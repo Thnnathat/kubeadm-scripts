@@ -1,12 +1,12 @@
-!/bin/bash
+#!/bin/bash
 #
 # Common setup for all servers (Control Plane and Nodes)
 
 set -euxo pipefail
 
 # Kubernetes Variable Declaration
-KUBERNETES_VERSION="v1.30.8"
-CRIO_VERSION="v1.30.8"
+KUBERNETES_VERSION="v1.30"
+CRIO_VERSION="v1.30"
 KUBERNETES_INSTALL_VERSION="1.30.8-1.1"
 
 # Disable swap
@@ -76,7 +76,7 @@ sudo apt-get update -y
 sudo apt-get install -y jq
 
 # Retrieve the local IP address of the eth0 interface and set it for kubelet
-local_ip="$(ip --json addr show ens33 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
+local_ip="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family == "inet") | .local')"
 
 # Write the local IP address to the kubelet default configuration file
 cat > /etc/default/kubelet << EOF
