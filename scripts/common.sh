@@ -1,13 +1,13 @@
-#!/bin/bash
+!/bin/bash
 #
 # Common setup for all servers (Control Plane and Nodes)
 
 set -euxo pipefail
 
 # Kubernetes Variable Declaration
-KUBERNETES_VERSION="v1.30"
-CRIO_VERSION="v1.30"
-KUBERNETES_INSTALL_VERSION="1.30.0-1.1"
+KUBERNETES_VERSION="v1.30.8"
+CRIO_VERSION="v1.30.8"
+KUBERNETES_INSTALL_VERSION="1.30.8-1.1"
 
 # Disable swap
 sudo swapoff -a
