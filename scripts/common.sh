@@ -82,3 +82,7 @@ local_ip="$(ip --json addr show eth0 | jq -r '.[0].addr_info[] | select(.family 
 cat > /etc/default/kubelet << EOF
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
+
+sudo apt-get update -y
+sudo apt install net-tools -y
+sudo apt upgrade -y
