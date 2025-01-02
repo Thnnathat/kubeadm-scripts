@@ -4,6 +4,8 @@ Vagrant.configure("2") do |config|
       echo "10.0.0.10  master-node" >> /etc/hosts
       echo "10.0.0.11  worker-node1" >> /etc/hosts
       echo "10.0.0.12  worker-node2" >> /etc/hosts
+      echo "10.0.0.13  worker-node3" >> /etc/hosts
+      echo "10.0.0.14  worker-node4" >> /etc/hosts
   SHELL
   
   config.vm.define "master" do |master|
@@ -18,7 +20,7 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", path: "scripts/master.sh"  
   end
 
-  (1..2).each do |i|
+  (1..4).each do |i|
 
   config.vm.define "node#{i}" do |node|
     node.vm.box = "bento/ubuntu-22.04"
