@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
       echo "10.0.0.12  worker-node2" >> /etc/hosts
       echo "10.0.0.13  worker-node3" >> /etc/hosts
       echo "10.0.0.14  worker-node4" >> /etc/hosts
+      echo "10.0.0.201 nfs" >> /etc/hosts
   SHELL
   
   config.vm.define "master" do |master|
@@ -32,6 +33,17 @@ Vagrant.configure("2") do |config|
     end
     node.vm.provision "shell", path: "scripts/common.sh"  
   end
-  
   end
+
+  config.vm.define "nfs" do |nfs|
+    nfs.vm.box = "bento/ubuntu-22.04"
+    nfs.vm.hostname = "nfs"
+    nfs.vm.network "private_network", ip: "10.0.0.201"
+    nfs.vm.provider "virtualbox" do |vb|
+        vb.memory = 4096
+        vb.cpus = 4
+    end
+    nfs.vm.provision "shell", path: "scripts/nfs.sh"  
+  end
+  
 end
